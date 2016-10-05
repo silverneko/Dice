@@ -13,16 +13,18 @@
     <section class="page-header">
       <h1 class="project-name">Dice</h1>
       <h2 class="project-tagline">TRPG Dice</h2>
-      <a href="https://github.com/silverneko/Dice" class="btn">View on GitHub</a>
-      <a href="https://github.com/silverneko/Dice/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/silverneko/Dice/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="dice" class="anchor" href="#dice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dice</h1>
-
-<p>TRPG Dice</p>
+      <div>
+        <p id="result"></p>
+        <form id="roll">
+          <input type="text" id="dice" autofocus>
+          <button type="submit" >
+            Roll!!
+          </button>
+        </form>
+      </div>
 
 <h2>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
@@ -36,6 +38,40 @@
 <code>1+d100</code>: Roll a hundred-face die and add 1.</li>
 </ul>
 
+    <script>
+      document.getElementById("roll").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var points = rollDice();
+        document.getElementById("result").innerHTML=points;
+      });
+      function rollDice() {
+        var points = 0
+        var dice = document.getElementById("dice").value;
+        dice = dice.split("+");
+        for (var i = 0; i < dice.length; ++i) {
+          var die = dice[i].replace("D", "d");
+          if (die.includes("d")) {
+            die = die.split("d");
+            var times, faces;
+            if (die[0].length == 0) {
+              times = 1;
+            } else {
+              times = parseInt(die[0], 10);
+            }
+            faces = parseInt(die[1], 10);
+            for (var j = 0; j < times; ++j) {
+              points += randomIntFromInterval(1, faces);
+            }
+          } else {
+            points += parseInt(die, 10);
+          }
+        }
+        return points;
+      }
+      function randomIntFromInterval(min,max) {
+        return Math.floor(Math.random()*(max-min+1)+min);
+      }
+    </script>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/silverneko/Dice">Dice</a> is maintained by <a href="https://github.com/silverneko">silverneko</a>.</span>
 
