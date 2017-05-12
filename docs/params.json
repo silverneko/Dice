@@ -1,0 +1,6 @@
+{
+  "name": "Dice",
+  "tagline": "TRPG Dice",
+  "body": "# Dice\r\nTRPG Dice\r\n\r\n## Example\r\n* `1d6`: Roll a six-face die.\r\n* `d4+2d8`: Roll a four-face die and two eight-face dice.\r\n* `1+d100`: Roll a hundred-face die and add 1.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
