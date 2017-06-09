@@ -48,6 +48,7 @@
       });
       function rollDice() {
         var input = document.getElementById("dice").value;
+        input = input.replace(/[^0-9dD,+\-]+/g, "");
         var dices = input.split(",");
         var result = [];
         for (var i = 0; i < dices.length; ++i) {
